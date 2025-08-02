@@ -34,13 +34,13 @@ export async function GET(req) {
   try {
     await connectDB();
     const { searchParams } = new URL(req.url);
-    const email = searchParams.get('q'); // expecting email here
+    const email = searchParams.get('q'); 
 
     let employees;
     if (email) {
-      employees = await Employee.find({ email }); // return specific user
+      employees = await Employee.find({ email }); 
     } else {
-      employees = await Employee.find({}); // fallback: return all
+      employees = await Employee.find({}); 
     }
 
     if (!employees || employees.length === 0) {

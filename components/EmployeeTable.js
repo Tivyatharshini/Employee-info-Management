@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function EmployeeTable() {
   const [employees, setEmployees] = useState([]);
-
+ const router = useRouter(); 
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
@@ -27,6 +27,10 @@ export default function EmployeeTable() {
     }
   };
 
+ const handleEdit = (id) => {
+    router.push(`/admin/edit/${id}`); 
+  };
+
   return (
     <table>
       <thead>
@@ -46,7 +50,8 @@ export default function EmployeeTable() {
             <td>{emp.role}</td>
             <td>{emp.department}</td>
             <td>
-              <Link href={`/admin/edit/${emp._id}`}>Edit</Link> |
+              <button onClick={() => handleEdit(emp._id)}>Edit</button> 
+              <span>  </span>
               <button onClick={() => handleDelete(emp._id)}>Delete</button>
             </td>
           </tr>

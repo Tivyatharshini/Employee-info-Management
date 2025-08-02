@@ -5,19 +5,23 @@ export default function EmployeeProfile() {
   const [user, setUser] = useState(null);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [resumeFile, setResumeFile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ contact: '', address: '' });
 
-  // 🔽 Fetch current user from API route
+  // Fetch user details
   useEffect(() => {
     const fetchUser = async () => {
       const res = await fetch('/api/current-user');
       if (res.ok) {
         const data = await res.json();
         setUser(data);
+        setFormData({ contact: data.contact || '', address: data.address || '' });
       }
     };
     fetchUser();
   }, []);
 
+  // Handle file uploads
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) setProfilePhoto(URL.createObjectURL(file));
@@ -26,6 +30,28 @@ export default function EmployeeProfile() {
   const handleResumeChange = (e) => {
     const file = e.target.files[0];
     if (file) setResumeFile(file);
+  };
+
+  // Handle form change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Save updated contact & address
+  const handleSave = async () => {
+    const res = await fetch('/api/current-user', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      const updatedUser = await res.json();
+      setUser(updatedUser);
+      setIsEditing(false);
+    } else {
+      alert('Failed to update user.');
+    }
   };
 
   return (
@@ -58,12 +84,36 @@ export default function EmployeeProfile() {
 
           <div className="detail-box">
             <label>Contact</label>
-            <p>{user?.contact}</p>
+            {isEditing ? (
+              <input
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{user?.contact}</p>
+            )}
           </div>
 
           <div className="detail-box">
             <label>Address</label>
-            <p>{user?.address}</p>
+            {isEditing ? (
+              <input
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{user?.address}</p>
+            )}
+          </div>
+
+          <div className="edit-buttons">
+            {isEditing ? (
+              <button onClick={handleSave}>Save</button>
+            ) : (
+              <button onClick={() => setIsEditing(true)}>Edit</button>
+            )}
           </div>
         </div>
 
