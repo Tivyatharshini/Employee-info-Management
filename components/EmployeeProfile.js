@@ -107,7 +107,7 @@ export default function EmployeeProfile() {
               <p>{user?.address}</p>
             )}
           </div>
-
+          
           <div className="edit-buttons">
             {isEditing ? (
               <button onClick={handleSave}>Save</button>

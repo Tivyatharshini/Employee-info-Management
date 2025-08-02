@@ -281,3 +281,10 @@ a {
 .resume-link:hover {
   background-color: #005ac2;
 }
+
+.edit-buttons{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-direction:row;
+}
