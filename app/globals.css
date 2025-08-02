@@ -1,3 +1,115 @@
+/* Modern, human-friendly UI for all pages */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h1, h2 {
+  color: #222;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: #fafbfc;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+input, select, button {
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  border: none;
+}
+
+button {
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #005bb5;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+a:hover {
+  color: #0051a3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+th, td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+th {
+  background: #f7f7f7;
+  font-weight: 600;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1rem 0.5rem;
+  }
+  form {
+    padding: 1rem 0.5rem;
+  }
+  th, td {
+    padding: 8px 6px;
+  }
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -39,4 +151,133 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0 0 12px 12px;
+}
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.navbar a, .navbar button {
+  color: #fff;
+  background: none;
+  border: none;
+  margin-left: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.intro {
+  text-align: center;
+  margin: 3rem 0;
+}
+.intro button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+}
+
+
+.profile-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0070f3;
+}
+
+.photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 8px;
+  border: 2px dashed #aaa;
+}
+
+.profile-details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.detail-box {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 1rem;
+  flex: 1 1 250px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.detail-box label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.detail-box p {
+  margin-top: 4px;
+  font-size: 15px;
+  color: #333;
+}
+
+.resume-section {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.resume-section input[type='file'] {
+  margin-top: 0.5rem;
+}
+
+.resume-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0070f3;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.resume-link:hover {
+  background-color: #005ac2;
 }
